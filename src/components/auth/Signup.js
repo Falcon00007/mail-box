@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { Col, Button, Row, Container, Card, Form, Spinner} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Signup=()=> {
   const emailRef = useRef();
@@ -9,6 +10,8 @@ const Signup=()=> {
   const [isLoading, setIsLoading] = useState(false);
   const [validate, setValidate] = useState(false);
   const [error,setError]= useState("")
+
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -89,6 +92,9 @@ const Signup=()=> {
                       type="email"
                       placeholder="Enter email"
                     />
+                    <Form.Text className="text-muted">
+                      *We'll never share your email with anyone else.
+                    </Form.Text>
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   </Form.Group>
 
@@ -119,7 +125,7 @@ const Signup=()=> {
                     </Button> }
                   </div>
 
-                  {isLoading && <p>Loading....</p>}
+                  {isLoading && <Spinner animation="border" size="sm"/>}
                 </Form>
                 <p className="mb-0 mt-3 text-center">
                   Already have an account??{" "}
@@ -131,7 +137,7 @@ const Signup=()=> {
             </Card>
           </Col>
         </Row>
-      </Container>
+      </Container> 
     </>
   );
 }

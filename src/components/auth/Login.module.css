@@ -1,0 +1,38 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #ff6b6b, #355c7d);
+  }
+  
+  .loginCard {
+    width: 30%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  .btnLogin {
+    width: 100%;
+  }
+  
+  .forgotPassword {
+    color: #4b8fe7;
+    text-decoration: none;
+    margin-bottom: 1rem;
+  }
+  
+  .forgotPassword:hover {
+    text-decoration: underline;
+    color: #295ea3;
+  }
+  .notSignup{
+    margin-top: .4rem;
+  }
+  .notSignup a{
+    text-decoration: none;
+  }
+  .notSignup a:hover{
+    text-decoration: underline;
+  }
