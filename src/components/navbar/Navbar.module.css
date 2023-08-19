@@ -2,7 +2,7 @@
 .navbar {
   position: sticky;
     width: 100%;
-      background: linear-gradient(to right, #2c3e50, #bdc3c7);;
+      background: linear-gradient(to right, #2c3e50, #bdc3c7);
       color: #fff;
       display: flex;
       justify-content: space-around;

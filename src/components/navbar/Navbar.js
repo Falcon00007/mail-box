@@ -33,8 +33,6 @@ const Navbar = () => {
     </button>
       <ul  className={`${styles.navbarNav} ${menuActive ? styles.active : ''}`}>
         <li className={styles.navItem}><Link to="/home" className={styles.navLink}><p><BiSolidHome/></p> Home</Link></li>
-        <li className={styles.navItem}><Link to="/mail" className={styles.navLink}><p><AiFillMail/></p> Mail</Link></li>
-        <li className={styles.navItem}><Link to="/profile" className={styles.navLink}><p><BiSolidUser/></p> Profile</Link></li>
         {!isLoggedIn&& <li className={styles.navItem}><Link to="/login" className={styles.navLink}><p><BiLogIn/></p> Login</Link></li>}
         {isLoggedIn&& <li className={styles.navItem}><button  className={styles.navLink} onClick={logoutHandler}><p><BiLogOut/></p> Logout</button></li>}
         </ul>

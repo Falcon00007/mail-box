@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import classes from './MailComponent.module.css'; // Add your styling
 
-const MailComponent = () => {
+const MailComponent = (props) => {
   const [to, setTo] = useState('');
   const [subject, setSubject] = useState('');
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -49,7 +50,15 @@ const MailComponent = () => {
 
   return (
     <>
-    <h2 className={classes.mailHeading}>Compose Email</h2>
+    <Modal
+    {...props}
+    size="lg"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+  >
+  <Modal.Header closeButton>
+  <Modal.Title className="mx-5">Compose Mail</Modal.Title>
+</Modal.Header>
     <div className={classes.mail_container}>
     <div className={classes.toMail}>
     <input
@@ -76,7 +85,8 @@ const MailComponent = () => {
       <button className={classes.send_button} onClick={handleSend}>
         Send
       </button>
-    </div>
+      </div>
+      </Modal>
     </>
   );
 };
