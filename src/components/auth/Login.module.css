@@ -36,3 +36,18 @@
   .notSignup a:hover{
     text-decoration: underline;
   }
+  .errorMessage{
+    color: red;
+    font-weight: 600;
+  }
+
+  @media (max-width: 940px) {
+    .loginCard {
+      width: 60%;
+    }
+  }
+  @media (max-width: 500px) {
+    .loginCard {
+      width: 90%;
+    }
+  }

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Container, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 import styles from './Login.module.css'; 
 import { authAction } from '../../store/authSlice';
 import {Link, useNavigate } from "react-router-dom";
@@ -77,15 +77,14 @@ const Login = () => {
           {!loading && <Button className={styles.btnLogin} variant="primary" type="submit" onClick={handleLogin}>
             Log In
           </Button>}
-          {loading && <Spinner animation='border' size='sm'/>}
-          {loading && <h2>Submitting Data...</h2>}
+          {loading && <><Spinner animation='border' size='md'/><h2>Submitting Data...</h2></>}
         </Form>
         <div className="text-center mt-3">
           <a href="#forgot-password" className={styles.forgotPassword}>
             Forgot password?
           </a>
           <p className={styles.notSignup}>
-            Do not have an account? <a href="#signup">Signup</a>
+            Do not have an account? <Link to="/signup">Signup</Link>
           </p>
         </div>
       </div>

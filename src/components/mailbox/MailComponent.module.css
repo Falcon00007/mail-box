@@ -1,0 +1,42 @@
+.mailHeading{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.mail_container {
+    width: 80%;
+    height: 70vh;
+    margin: 1rem auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .mail_container input{
+    border-color: transparent;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .mail_container input:focus {
+    outline: none;
+    border-bottom: 1px solid #007bff; /* Change to your desired focus color */
+  }
+  .send_button {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .send_button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Col, Button, Row, Container, Card, Form, Spinner} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup=()=> {
   const emailRef = useRef();
@@ -55,7 +55,7 @@ const Signup=()=> {
         setIsLoading(false);
         if (res.ok) {
           console.log(res);
-
+          navigate('/login');
         } else {
           res.json().then((data) => {
             let errorMessage = "Signup Failed";
@@ -73,7 +73,7 @@ const Signup=()=> {
   };
   return (
     <>
-      <Container style={{backgroundImage: "linear-gradient(to right, #4880EC, #019CAD)"}}>
+      <Container className="vw-100" style={{backgroundImage: "linear-gradient(to right, #4880EC, #019CAD)"}}>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={7} lg={5} xs={10}>
             <Card className="px-5" style={{backgroundColor:"#e9ecef"}}>
@@ -129,9 +129,9 @@ const Signup=()=> {
                 </Form>
                 <p className="mb-0 mt-3 text-center">
                   Already have an account??{" "}
-                  <a href="/login" className="text-success fw-bold">
+                  <Link to="/login" className="text-success fw-bold">
                     Sign In
-                  </a>
+                  </Link>
                 </p>
               </Card.Body>
             </Card>
