@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Button } from "react-bootstrap";
 import MailComponent from "../mailbox/MailComponent";
 import { BiMailSend,BiTrash } from "react-icons/bi";
@@ -17,7 +17,9 @@ import {
 } from "cdbreact";
 
 const Sidebar = () => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const inboxMails = localStorage.getItem("numberOfMails");
+  
   return (
     <>
       <MailComponent show={modalShow} onHide={() => setModalShow(false)} />
@@ -42,7 +44,7 @@ const Sidebar = () => {
           <CDBSidebarContent>
           <CDBSidebarMenu>
           <CDBSidebarMenuItem suffix={
-            <CDBBadge color="danger" size="small" borderType="pill">2</CDBBadge>}> <Link to="inbox"><RiMailUnreadFill/> Inbox</Link></CDBSidebarMenuItem>
+            <CDBBadge color="danger" size="small" borderType="pill">{inboxMails}</CDBBadge>}> <Link to="inbox"><RiMailUnreadFill/> Inbox</Link></CDBSidebarMenuItem>
             <CDBSidebarMenuItem suffix={<CDBBadge>4</CDBBadge>}> <TbMailOpenedFilled/> All Mails</CDBSidebarMenuItem>
              <CDBSidebarMenuItem><BiMailSend/> Outbox</CDBSidebarMenuItem>
              <CDBSidebarMenuItem><BiTrash/> Trash</CDBSidebarMenuItem>

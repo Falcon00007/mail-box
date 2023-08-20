@@ -6,22 +6,23 @@ import Header from "./components/navbar/Header";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import Home from "./components/pages/Home"
-import MailComponent from "./components/mailbox/MailComponent";
+import About from "./components/pages/About";
+import Inbox from "./components/mailbox/Inbox";
 
 function App() {
   const isLoggedIn= useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
 
   return (
     <>
     <Header/>
     <Routes>
-    <Route path="/signup" element={<Signup/>}/>
-    <Route path="/login" element={<Login/>}/> 
+    {!isLoggedIn && <Route path="/signup" element={<Signup/>}/>}
+   {!isLoggedIn && <Route path="/login" element={<Login/>}/>}   
+    <Route path="/about" element={<About/>}/>
     {isLoggedIn && <Route path="/home" element={<Home/>}/> }
-    {isLoggedIn && <Route path="/mail" element={<MailComponent/>}/>}
+    {isLoggedIn && <Route path="/inbox" element={<Inbox/>}/>}
    {!isLoggedIn && <Route path='*' element={<Navigate to='/login'/>}/>}
-   {!isLoggedIn && <Route path='*' element={<Navigate to='/home'/>}/>}
+   {isLoggedIn && <Route path='*' element={<Navigate to='/home'/>}/>}
     </Routes>
     </>
   )     

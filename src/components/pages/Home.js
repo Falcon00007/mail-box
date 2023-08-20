@@ -1,11 +1,12 @@
 import React from 'react'
-import Sidebar from './Sidebar'
+import styles from "./Home.module.css"
 
 const Home = () => {
   return (
     <>
-    <Sidebar/>
+    <div className={styles.container}>
     <h2>Welcome to your mail box</h2>
+    </div>
     </>
   )
 }

@@ -39,8 +39,9 @@ const Login = () => {
           setLoading(false);
           const data= await res.json()
           dispatch(authAction.login(data.idToken));
-          localStorage.setItem("email", data.email.replace(/[@.]/g, ""));
-          localStorage.setItem("token", data.idToken);          
+          localStorage.setItem("email", data.email);
+          localStorage.setItem("token", data.idToken);    
+          localStorage.setItem("numberOfMails", 0);      
           console.log('User LoggedIn successfully');
           navigate('/home');
           }
@@ -77,7 +78,11 @@ const Login = () => {
           {!loading && <Button className={styles.btnLogin} variant="primary" type="submit" onClick={handleLogin}>
             Log In
           </Button>}
-          {loading && <><Spinner animation='border' size='md'/><h2>Submitting Data...</h2></>}
+          {loading && <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" role="status" size="md">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>}
         </Form>
         <div className="text-center mt-3">
           <a href="#forgot-password" className={styles.forgotPassword}>
