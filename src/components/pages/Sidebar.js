@@ -6,16 +6,7 @@ import { TbMailPlus,TbMailOpenedFilled } from "react-icons/tb";
 import { RiMailUnreadFill    } from "react-icons/ri";
 import { Link } from "react-router-dom"; 
 import { useSelector } from "react-redux";
-
-import {
-  CDBSidebar,
-  CDBSidebarHeader,
-  CDBSidebarContent,
-  CDBSidebarMenu,
-  CDBSidebarMenuItem,
-  CDBSidebarFooter,
-  CDBBadge,
-} from "cdbreact";
+import { CDBSidebar, CDBSidebarHeader, CDBSidebarContent, CDBSidebarMenu, CDBSidebarMenuItem, CDBSidebarFooter, CDBBadge,} from "cdbreact";
 
 const Sidebar = () => {
   const [modalShow, setModalShow] = useState(false);

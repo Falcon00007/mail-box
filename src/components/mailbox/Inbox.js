@@ -47,7 +47,9 @@ const Inbox = () => {
     getData();
   }, [getData]);
 
+
   const DeleteHandler = async (id) => {
+    setLoading(true);
     console.log(id);
     const mail = data.filter((item)=> item.id===id);
     dispatch(mailActions.deleteMail(mail));
@@ -65,6 +67,7 @@ const Inbox = () => {
     let response = await res;
     console.log(response);
     getData();
+    setLoading(false);
   };
 
   return (
