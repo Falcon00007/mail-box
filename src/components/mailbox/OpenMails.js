@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment } from "react";
+import React, {useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 
@@ -39,7 +39,7 @@ const OpenMails = () => {
   }, [id, changedMail]);
 
   return (
-    <Fragment>
+    <>
       <Card bg="light" className="vh-100">
         <Card.Header
           style={{
@@ -74,7 +74,7 @@ const OpenMails = () => {
         )}
         {!selectedMail[0] && navigate("/inbox")}
       </Card>
-    </Fragment>
+    </>
   );
 };
 
