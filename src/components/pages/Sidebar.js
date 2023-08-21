@@ -5,6 +5,7 @@ import { BiMailSend,BiTrash } from "react-icons/bi";
 import { TbMailPlus,TbMailOpenedFilled } from "react-icons/tb";
 import { RiMailUnreadFill    } from "react-icons/ri";
 import { Link } from "react-router-dom"; 
+import { useSelector } from "react-redux";
 
 import {
   CDBSidebar,
@@ -18,8 +19,8 @@ import {
 
 const Sidebar = () => {
   const [modalShow, setModalShow] = useState(false);
-  const inboxMails = localStorage.getItem("numberOfMails");
-  
+  const inboxMails = useSelector((state)=> state.email.unreadMails)
+  console.log(inboxMails);
   return (
     <>
       <MailComponent show={modalShow} onHide={() => setModalShow(false)} />

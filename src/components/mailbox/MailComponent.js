@@ -17,6 +17,17 @@ const MailComponent = (props) => {
 }, [editorState]);
 
   const senderEmail= localStorage.getItem('email');
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+};
+const formattedDate = formatDate(new Date());
 
   const handleSend = async() => {
    setLoading(true)
@@ -25,6 +36,10 @@ const MailComponent = (props) => {
         to: to,
         subject: subject,
         message: mailBody,
+        read:true,
+        time:formattedDate,
+        send:true,
+        receive:false
       };
 
       try{
@@ -54,6 +69,10 @@ const MailComponent = (props) => {
               from: senderEmail,
               subject: subject,
               message: mailBody,
+              read:false,
+              time:formattedDate,
+              send:false,
+              receive:true
             }),
             headers: {
               "Content-Type": "application/json",

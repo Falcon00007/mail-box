@@ -5,9 +5,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/navbar/Header";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
+import ForgetPassword from "./components/auth/ForgetPassword";
 import Home from "./components/pages/Home"
 import About from "./components/pages/About";
 import Inbox from "./components/mailbox/Inbox";
+import OpenMails from "./components/mailbox/OpenMails";
 
 function App() {
   const isLoggedIn= useSelector((state) => state.auth.isLoggedIn);
@@ -18,9 +20,11 @@ function App() {
     <Routes>
     {!isLoggedIn && <Route path="/signup" element={<Signup/>}/>}
    {!isLoggedIn && <Route path="/login" element={<Login/>}/>}   
-    <Route path="/about" element={<About/>}/>
-    {isLoggedIn && <Route path="/home" element={<Home/>}/> }
-    {isLoggedIn && <Route path="/inbox" element={<Inbox/>}/>}
+   <Route path="/about" element={<About/>}/>
+   {isLoggedIn && <Route path="/home" element={<Home/>}/> }
+   {isLoggedIn && <Route path="/inbox" element={<Inbox/>}/>}
+   {isLoggedIn && <Route path="/inbox/:id" element={<OpenMails/>}/>}
+   {!isLoggedIn && <Route path="/forgetpassword" element={<ForgetPassword/>}/>}
    {!isLoggedIn && <Route path='*' element={<Navigate to='/login'/>}/>}
    {isLoggedIn && <Route path='*' element={<Navigate to='/home'/>}/>}
     </Routes>

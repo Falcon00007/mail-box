@@ -1,8 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Spinner, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { mailActions } from "../../store/mailSlice";
+import { Link } from "react-router-dom";
 
 const Inbox = () => {
-  const [data, setData] = useState([]);
+  const [loading, setLoading]= useState(false);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.email.recieved);
+  console.log(data);
+
 
   const email = localStorage.getItem("email");
   const changedMail = email.replace(/[@.]/g, "");
@@ -11,26 +18,34 @@ const Inbox = () => {
 
   const getData = useCallback(async () => {
     try {
+      setLoading(true);
       let res = await fetch(
         `https://mail-box-client-3e379-default-rtdb.firebaseio.com//${changedMail}Inbox.json`
       );
       let data = await res.json();
-      console.log(data);
       let arr = [];
-      for (let i in data) {
-        arr.push(data[i]);
-        setData(arr);
+      let unreadMails=0;
+       console.log(data);
+      
+       for (let i in data) {
+        if(data[i].read===false){
+          unreadMails++;
+        }
+        const id= i;
+        arr=[{id:id, ...data[i]}, ...arr];
+        dispatch(mailActions.recievedMail([...arr]));
+        dispatch(mailActions.unreadMessage(unreadMails));
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
-  }, [changedMail]);
+  }, [changedMail,dispatch]);
 
-  const getMessage = () => {};
   useEffect(() => {
     getData();
   }, [getData]);
-  console.log("mail...." + data);
 
   return (
     <>
@@ -38,26 +53,48 @@ const Inbox = () => {
         <h2 style={{ textAlign: "center" }}>Inbox</h2>
         <ListGroup>
           {data.length === 0 && <h5 style={{textAlign:"center", margin:"1rem auto"}}>No Mails in Inbox!!</h5>}
-          {data !== null &&
+          {loading && data.length>0 && <Spinner/>}
+
+          {!loading && data !== null && 
             Object.keys(data).map((email, index) => {
               return (
                 <ListGroup.Item
-                  onClick={() => getMessage}
-                  style={{ cursor: "pointer", backgroundImage:'linear-gradient(to right, white, grey)' }}
                   key={index}
-                >
-                  <span>
-                    <b>From:</b> {data[email].from}
-                  </span>
-                  <br />
-                  <span>
-                    <b>Subject: </b> {data[email].subject}
-                  </span>
-                  <br />
-                  <span>
-                    <b>Message: </b> {data[email].message}
-                  </span>
-                  <br />
+                  className="bg-dark bg-gradient bg-opacity-50" 
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                  >
+                  <Link
+                    key={index}
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      alignItems: "center",
+                    }}
+                    to={`/inbox/${data[email].id}`} >  
+                  {data[email].read===false && (
+                    <p className="mt-3 me-3 ms-0" style={{ marginRight: "10px", float: "left" }}>
+                      🟢
+                    </p>
+                  )}
+                    {" "}
+                    <span style={{textDecoration:"none", color:"white"}}>
+                      <b>From:</b> {data[email].from}                     
+                    </span>
+                    {" "}
+                    <span>({data[email].time})</span>
+                    <br />
+                    <span>
+                      <b>Subject: </b>
+                      {data[email].subject}
+                    </span>
+                  </Link>
+                  <Button>
+                    Delete
+                  </Button>
                 </ListGroup.Item>
               );
             })}

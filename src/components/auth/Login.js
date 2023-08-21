@@ -85,9 +85,9 @@ const Login = () => {
         </div>}
         </Form>
         <div className="text-center mt-3">
-          <a href="#forgot-password" className={styles.forgotPassword}>
+          <Link to="/forgetpassword" className={styles.forgotPassword}>
             Forgot password?
-          </a>
+          </Link>
           <p className={styles.notSignup}>
             Do not have an account? <Link to="/signup">Signup</Link>
           </p>

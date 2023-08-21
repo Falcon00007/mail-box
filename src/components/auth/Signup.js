@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Col, Button, Row, Container, Card, Form, Spinner} from "react-bootstrap";
+import { Col, Button, Row, Card, Form, Spinner} from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup=()=> {
@@ -73,9 +73,9 @@ const Signup=()=> {
   };
   return (
     <>
-      <Container className="vw-100" style={{backgroundImage: "linear-gradient(to right, #4880EC, #019CAD)"}}>
-        <Row className="vh-100 d-flex justify-content-center align-items-center">
-          <Col md={7} lg={5} xs={10}>
+      <div style={{width:"100%",position:"fixed",height:"100%", backgroundImage: "linear-gradient(to right, #4880EC, #019CAA)"}}>
+        <Row className="vh-100 d-flex justify-content-center align-items-flexStart pt-4">
+          <Col  md={6} lg={4} xs={9}>
             <Card className="px-5" style={{backgroundColor:"#e9ecef"}}>
               <Card.Body className="mb-3 mt-md-4">
                 <h2 className="fw-bold mb-2 text-center text-uppercase ">
@@ -137,7 +137,7 @@ const Signup=()=> {
             </Card>
           </Col>
         </Row>
-      </Container> 
+      </div> 
     </>
   );
 }
