@@ -1,4 +1,4 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 
@@ -21,7 +21,7 @@ const OpenMails = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://mail-box-client-3e379-default-rtdb.firebaseio.com//${changedMail}Inbox/${id}.json`,
+        `https://mail-box-client-2c07a-default-rtdb.firebaseio.com/${changedMail}Inbox/${id}.json`,
         {
           method: "PATCH",
           body: JSON.stringify({
@@ -47,19 +47,26 @@ const OpenMails = () => {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: "28px",
-          }}
-        > <span style={{float:"left"}}><Link to="/inbox"><BiArrowBack/></Link></span>
+          }}>
+          {" "}
+          <span style={{ float: "left" }}>
+            <Link to="/inbox">
+              <BiArrowBack />
+            </Link>
+          </span>
           Message
         </Card.Header>
         {selectedMail[0] && (
           <Card.Body>
-            <Card.Title>From: {selectedMail[0].from}{"   "} 
+            <Card.Title>
+              From: {selectedMail[0].from}
+              {"   "}
             </Card.Title>
             <br />
             <Card.Text>
-            <b>Date & Time: </b> {selectedMail[0].time}
+              <b>Date & Time: </b> {selectedMail[0].time}
             </Card.Text>
-            <br/>
+            <br />
             <Card.Text>
               <b>Subject: </b>
               {selectedMail[0].subject}

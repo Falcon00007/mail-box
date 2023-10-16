@@ -7,14 +7,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Card } from "react-bootstrap";
 
-
 const OpenOutbox = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { id } = useParams();
-    const mails = useSelector((state) => state.email.sent);
-    
-    const selectedMail = mails.filter((item) => item.id === id);
+  const { id } = useParams();
+  const mails = useSelector((state) => state.email.sent);
+
+  const selectedMail = mails.filter((item) => item.id === id);
 
   return (
     <>
@@ -25,19 +24,26 @@ const OpenOutbox = () => {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: "28px",
-          }}
-        > <span style={{float:"left"}}><Link to="/outbox"><BiArrowBack/></Link></span>
+          }}>
+          {" "}
+          <span style={{ float: "left" }}>
+            <Link to="/outbox">
+              <BiArrowBack />
+            </Link>
+          </span>
           Message
         </Card.Header>
         {selectedMail[0] && (
           <Card.Body>
-            <Card.Title>To: {selectedMail[0].to}{"   "} 
+            <Card.Title>
+              To: {selectedMail[0].to}
+              {"   "}
             </Card.Title>
             <br />
             <Card.Text>
-            <b>Date & Time: </b> {selectedMail[0].time}
+              <b>Date & Time: </b> {selectedMail[0].time}
             </Card.Text>
-            <br/>
+            <br />
             <Card.Text>
               <b>Subject: </b>
               {selectedMail[0].subject}
@@ -53,7 +59,7 @@ const OpenOutbox = () => {
         {!selectedMail[0] && navigate("/outbox")}
       </Card>
     </>
-  )
-}
+  );
+};
 
 export default OpenOutbox;
